@@ -3573,18 +3573,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2712678167594103677, guid: 434758fb0ae3e2b4fa18c85424c1c586, type: 3}
-      propertyPath: m_Size.x
-      value: 1.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2712678167594103677, guid: 434758fb0ae3e2b4fa18c85424c1c586, type: 3}
-      propertyPath: m_Size.y
-      value: 1.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2712678167594103677, guid: 434758fb0ae3e2b4fa18c85424c1c586, type: 3}
-      propertyPath: m_Size.z
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 9094898188771373275, guid: 434758fb0ae3e2b4fa18c85424c1c586, type: 3}
       propertyPath: m_Name
       value: BlindPlayer
@@ -3633,8 +3621,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1884089792, guid: 434758fb0ae3e2b4fa18c85424c1c586, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 434758fb0ae3e2b4fa18c85424c1c586, type: 3}
 --- !u!1001 &9105611516052456389
 PrefabInstance:

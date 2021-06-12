@@ -10,8 +10,10 @@ public class MouseLook : MonoBehaviour
     private Transform _playerBody;
     [SerializeField]
     private Transform _camera;
+    [SerializeField]
+    private bool _yEnabled = true;
 
-    private float _xRotation = 0f;
+    private float _yRotation = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -23,12 +25,16 @@ public class MouseLook : MonoBehaviour
     void Update()
     {
         float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * _mouseSensitivity * Time.deltaTime;
-
-        _xRotation -= mouseY;
-        _xRotation = Mathf.Clamp(_xRotation, -90f, 90f);
-
-        _camera.transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
         _playerBody.Rotate(Vector3.up * mouseX);
+
+        if (_yEnabled)
+        {
+            float mouseY = Input.GetAxis("Mouse Y") * _mouseSensitivity * Time.deltaTime;
+
+            _yRotation -= mouseY;
+            _yRotation = Mathf.Clamp(_yRotation, -90f, 90f);
+
+            _camera.transform.localRotation = Quaternion.Euler(_yRotation, 0f, 0f);
+        }
     }
 }

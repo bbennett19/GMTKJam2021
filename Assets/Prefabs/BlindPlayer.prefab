@@ -42,7 +42,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16, z: 0.2}
+  m_Size: {x: 1.3, y: 1.3, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6508180326284281505
 GameObject:
@@ -55,7 +55,6 @@ GameObject:
   - component: {fileID: 3445746772935745913}
   - component: {fileID: 6148239387092828768}
   - component: {fileID: 8379142822809044633}
-  - component: {fileID: 1884089792}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -140,19 +139,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77041d22debd7df46866ded2f09ceb30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &1884089792
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6508180326284281505}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9094898188771373275
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,6 +209,7 @@ MonoBehaviour:
   _mouseSensitivity: 400
   _playerBody: {fileID: 9094898188771373276}
   _camera: {fileID: 9094898189090880662}
+  _yEnabled: 0
 --- !u!114 &9094898188771373279
 MonoBehaviour:
   m_ObjectHideFlags: 0

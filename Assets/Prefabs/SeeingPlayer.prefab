@@ -166,6 +166,7 @@ MonoBehaviour:
   _mouseSensitivity: 400
   _playerBody: {fileID: 9105611515435814536}
   _camera: {fileID: 9105611515823080130}
+  _yEnabled: 0
 --- !u!114 &9105611515435814539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,6 +196,7 @@ MonoBehaviour:
   _enabledWhenActive:
   - {fileID: 9105611515823080129}
   - {fileID: 9105611516013349839}
+  _disableWhenActive: []
 --- !u!114 &1094833293372003809
 MonoBehaviour:
   m_ObjectHideFlags: 0
