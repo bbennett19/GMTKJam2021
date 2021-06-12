@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSwap : MonoBehaviour
+public class PlayerManager : MonoBehaviour
 {
     [SerializeField]
     private PheromoneTrail _pheromoneTrail;
@@ -11,6 +11,17 @@ public class PlayerSwap : MonoBehaviour
     private PlayerController _blindPlayer;
 
     private bool _seeingActive = true;
+
+    private static PlayerManager _instance;
+
+    public static PlayerManager Instance {  get { return _instance; } }
+
+
+    private void Awake()
+    {
+        _instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +39,12 @@ public class PlayerSwap : MonoBehaviour
         }
     }
 
-    public void SwapPlayers()
+    public GameObject GetCurrentPlayer()
+    {
+        return (_seeingActive ? _seeingPlayer : _blindPlayer).gameObject;
+    }
+
+    private void SwapPlayers()
     {
         _seeingActive = !_seeingActive;
         _seeingPlayer.SetPlayerActive(_seeingActive);

@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private List<GameObject> _enabledWhenActive;
+    [SerializeField]
+    private List<GameObject> _disableWhenActive;
     
     private MouseLook _mouseLook;
     private PlayerMovement _playerMovement;
@@ -21,6 +23,11 @@ public class PlayerController : MonoBehaviour
         foreach (GameObject gameObject in _enabledWhenActive)
         {
             gameObject.SetActive(active);
+        }
+
+        foreach (GameObject gameObject in _disableWhenActive)
+        {
+            gameObject.SetActive(!active);
         }
 
         _mouseLook.enabled = active;

@@ -94,7 +94,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 2.04, z: 0}
 --- !u!1 &9105611515435814543
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,9 +108,10 @@ GameObject:
   - component: {fileID: 9105611515435814542}
   - component: {fileID: 9105611515435814539}
   - component: {fileID: 625036619}
+  - component: {fileID: 1094833293372003809}
   m_Layer: 0
   m_Name: SeeingPlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -194,6 +195,20 @@ MonoBehaviour:
   _enabledWhenActive:
   - {fileID: 9105611515823080129}
   - {fileID: 9105611516013349839}
+--- !u!114 &1094833293372003809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9105611515435814543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4330beecddb64774b85282313a1b8176, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pheromoneTrail: {fileID: 0}
+  _distanceBetweenPhermonones: 5
 --- !u!1 &9105611515823080129
 GameObject:
   m_ObjectHideFlags: 0
