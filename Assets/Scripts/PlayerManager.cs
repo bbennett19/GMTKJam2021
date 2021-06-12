@@ -37,6 +37,9 @@ public class PlayerManager : MonoBehaviour
         {
             Debug.LogError("BlindPlayer null");
         }
+
+        _seeingPlayer.SetPlayerActive(true);
+        _blindPlayer.SetPlayerActive(false);
     }
 
     public GameObject GetCurrentPlayer()
