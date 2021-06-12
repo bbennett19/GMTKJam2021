@@ -12,6 +12,12 @@ public class PlayerController : MonoBehaviour
     private LayerMask _hideyHoleLayerMask;
     [SerializeField]
     private float _hideyHoleDetectionDistance;
+    [SerializeField]
+    private LayerMask _levelExitLayerMask;
+    [SerializeField]
+    private float _levelExityDetectionDistance;
+
+    public bool isSeeingPlayer;
     
     private MouseLook _mouseLook;
     private PlayerMovement _playerMovement;
@@ -22,7 +28,7 @@ public class PlayerController : MonoBehaviour
     private Transform _hideyHoleTransform;
     private int frame = 0;
 
-    public void Start()
+    public void Awake()
     {
         _mouseLook = GetComponent<MouseLook>();
         _playerMovement = GetComponent<PlayerMovement>();
@@ -50,45 +56,71 @@ public class PlayerController : MonoBehaviour
     {
         if (_playerActive)
         {
-            RaycastHit hit;
-            bool canHide = Physics.Raycast(transform.position, transform.forward, out hit, _hideyHoleDetectionDistance, _hideyHoleLayerMask);
-
-            Debug.Log(canHide);
-            if (!_hiding && canHide && Input.GetKey(KeyCode.E))
+            if (!CheckHideyHole() && !CheckLevelExit())
             {
-                Debug.Log("Hide");
-                _characterController.enabled = false;
-                _hiding = true;
-                _hideyHoleTransform = hit.transform.gameObject.GetComponent<HideyHole>().GetHidingTransform();
-                transform.position = _hideyHoleTransform.position;
-                transform.rotation = _hideyHoleTransform.rotation;
-                // _mouseLook.SetXRestricted(true);
-            }
-            else if (_hiding && Input.GetKeyDown(KeyCode.E))
-            {
-                Debug.Log("Leave hiding");
-                _hiding = false;
-                transform.position = transform.position + (_hideyHoleTransform.forward * 3f);
-                _characterController.enabled = true;
-                //_mouseLook.SetXRestricted(false);
-            }
-
-            // very inefficient, should only do these when the hiding/canhide state changes
-            if (!_hiding && canHide)
-            {
-                Debug.Log("Should show hide prompt");
-                ButtonPromptOverlayController.Instance.ShowPromt("Press E to Hide");
-            }
-            else if (_hiding)
-            {
-                Debug.Log("Should show leave prompt");
-                ButtonPromptOverlayController.Instance.ShowPromt("Press E to Exit");
-            }
-            else if (!_hiding && !canHide)
-            {
-                Debug.Log("Should clear prompt");
                 ButtonPromptOverlayController.Instance.HidePromt();
             }
         }
+    }
+
+    private bool CheckHideyHole()
+    {
+        RaycastHit hit;
+        bool canHide = Physics.Raycast(transform.position, transform.forward, out hit, _hideyHoleDetectionDistance, _hideyHoleLayerMask);
+
+        if (!_hiding && canHide && Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("Hide");
+            _characterController.enabled = false;
+            _hiding = true;
+            _hideyHoleTransform = hit.transform.gameObject.GetComponent<HideyHole>().GetHidingTransform();
+            transform.position = _hideyHoleTransform.position;
+            transform.rotation = _hideyHoleTransform.rotation;
+            // _mouseLook.SetXRestricted(true);
+        }
+        else if (_hiding && Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("Leave hiding");
+            _hiding = false;
+            transform.position = transform.position + (_hideyHoleTransform.forward * 3f);
+            _characterController.enabled = true;
+            //_mouseLook.SetXRestricted(false);
+        }
+
+        // very inefficient, should only do these when the hiding/canhide state changes
+        if (!_hiding && canHide)
+        {
+            Debug.Log("Should show hide prompt");
+            ButtonPromptOverlayController.Instance.ShowPromt("Press E to Hide");
+            return true;
+        }
+        else if (_hiding)
+        {
+            Debug.Log("Should show leave prompt");
+            ButtonPromptOverlayController.Instance.ShowPromt("Press E to Exit");
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool CheckLevelExit()
+    {
+        RaycastHit hit;
+        bool canExit = Physics.Raycast(transform.position, transform.forward, out hit, _levelExityDetectionDistance, _levelExitLayerMask);
+
+        if (canExit && LevelExitManager.Instance.CanPlayerExit(isSeeingPlayer) &&  Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("Exit");
+            LevelExitManager.Instance.PlayerExited();
+        }
+        else if (canExit && LevelExitManager.Instance.CanPlayerExit(isSeeingPlayer))
+        {
+            Debug.Log("Can Exit");
+            ButtonPromptOverlayController.Instance.ShowPromt("Press E to Exit Level");
+            return true;
+        }
+
+        return false;
     }
 }

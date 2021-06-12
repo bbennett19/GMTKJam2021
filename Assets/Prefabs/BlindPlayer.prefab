@@ -245,6 +245,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _hideyHoleDetectionDistance: 0
+  _levelExitLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  _levelExityDetectionDistance: 3
+  isSeeingPlayer: 0
 --- !u!1 &9094898189090880661
 GameObject:
   m_ObjectHideFlags: 0

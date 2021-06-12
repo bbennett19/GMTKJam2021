@@ -11,6 +11,7 @@ public class PlayerManager : MonoBehaviour
     private PlayerController _blindPlayer;
 
     private bool _seeingActive = true;
+    private bool _swapDisabled = false;
 
     private static PlayerManager _instance;
 
@@ -40,6 +41,7 @@ public class PlayerManager : MonoBehaviour
 
         _seeingPlayer.SetPlayerActive(true);
         _blindPlayer.SetPlayerActive(false);
+        LevelExitManager.Instance.ToggleActivePlayer(true);
     }
 
     public GameObject GetCurrentPlayer()
@@ -47,12 +49,23 @@ public class PlayerManager : MonoBehaviour
         return (_seeingActive ? _seeingPlayer : _blindPlayer).gameObject;
     }
 
-    private void SwapPlayers()
+    public void SwapPlayers()
     {
-        _seeingActive = !_seeingActive;
-        _seeingPlayer.SetPlayerActive(_seeingActive);
-        _blindPlayer.SetPlayerActive(!_seeingActive);
-        _pheromoneTrail.SetTrailActive(!_seeingActive);
+        if (!_swapDisabled)
+        {
+            _seeingActive = !_seeingActive;
+            _seeingPlayer.SetPlayerActive(_seeingActive);
+            _blindPlayer.SetPlayerActive(!_seeingActive);
+            _pheromoneTrail.SetTrailActive(!_seeingActive);
+            LevelExitManager.Instance.ToggleActivePlayer(_seeingActive);
+        }
+    }
+
+    public void DisableSwap()
+    {
+        _swapDisabled = true;
+        // disabling the swap means the blind player made it out
+        _blindPlayer.gameObject.SetActive(false);
     }
 
     public void Update()
