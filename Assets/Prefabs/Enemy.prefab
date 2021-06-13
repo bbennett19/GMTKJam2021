@@ -155,7 +155,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 3759205489031748639}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 1.64
   m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -189,8 +189,13 @@ MonoBehaviour:
   - {fileID: 0}
   _patrolSpeed: 5
   _chaseSpeed: 9
-  _chaseRadius: 15
+  _chaseRadius: 25
   _attackDistance: 3
+  _audioSource: {fileID: 1704315115}
+  _startChasingClip: {fileID: 8300000, guid: 1fef32276be30d24a8c4f1b7d376451b, type: 3}
+  _chasingClip: {fileID: 8300000, guid: e42fee29966bb0d4b81ded3c1a2fa3fb, type: 3}
+  _attackClip: {fileID: 8300000, guid: 2bad1c49a2f318848a68fc4b0b9029f7, type: 3}
+  _patrolClip: {fileID: 8300000, guid: e93538274fb93e241a670028c279d787, type: 3}
 --- !u!82 &1704315115
 AudioSource:
   m_ObjectHideFlags: 0
@@ -201,7 +206,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e93538274fb93e241a670028c279d787, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

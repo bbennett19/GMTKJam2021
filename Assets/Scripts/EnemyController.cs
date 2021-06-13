@@ -16,11 +16,22 @@ public class EnemyController : MonoBehaviour
     private float _chaseRadius;
     [SerializeField]
     private float _attackDistance;
+    [SerializeField]
+    private AudioSource _audioSource;
+    [SerializeField]
+    private AudioClip _startChasingClip;
+    [SerializeField]
+    private AudioClip _chasingClip;
+    [SerializeField]
+    private AudioClip _attackClip;
+    [SerializeField]
+    private AudioClip _patrolClip;
 
     private NavMeshAgent _navMeshAgent;
     private int _nextWaypoint = 0;
     private bool _chasing = false;
     private bool _done = false;
+    private Coroutine _audioCoroutine;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +39,7 @@ public class EnemyController : MonoBehaviour
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _navMeshAgent.speed = _patrolSpeed;
         GotoNextWaypoint();
+        PlayClip(_patrolClip, true);
     }
 
     // Update is called once per frame
@@ -40,10 +52,12 @@ public class EnemyController : MonoBehaviour
                 Debug.Log("Start chasing");
                 _navMeshAgent.speed = _chaseSpeed;
                 _chasing = true;
+                PlayShortAndLong(_startChasingClip, _chasingClip);
             }
             else if (_chasing && !PlayerInChaseRadius())
             {
                 Debug.Log("Stop chasing");
+                PlayClip(_patrolClip, true);
                 _navMeshAgent.speed = _patrolSpeed;
                 _chasing = false;
                 GotoClosestWaypoint();
@@ -51,6 +65,7 @@ public class EnemyController : MonoBehaviour
             else if (_chasing && PlayerInAttackRadius())
             {
                 Debug.Log("Attack");
+                PlayClip(_attackClip, false);
                 PlayerController player = PlayerManager.Instance.GetClosestPlayer(transform.position).GetComponent<PlayerController>();
                 player.SetDead();
                 PlayerManager.Instance.DisableSwap(true);
@@ -139,5 +154,40 @@ public class EnemyController : MonoBehaviour
 
         _nextWaypoint = closestWaypointIndex;
         GotoNextWaypoint();
+    }
+
+    private void PlayShortAndLong(AudioClip shortClip, AudioClip longClip)
+    {
+        if (_audioCoroutine != null)
+        {
+            StopCoroutine(_audioCoroutine);
+        }
+
+        _audioCoroutine = StartCoroutine(PlayTwoClips(shortClip, longClip));
+    }
+
+    public void PlayClip(AudioClip clip, bool looping)
+    {
+        if (_audioCoroutine != null)
+        {
+            StopCoroutine(_audioCoroutine);
+            _audioCoroutine = null;
+        }
+
+        _audioSource.clip = clip;
+        _audioSource.loop = looping;
+        _audioSource.Play();
+    }
+
+    IEnumerator PlayTwoClips(AudioClip shortClip, AudioClip longClip)
+    {
+        PlayClip(shortClip, false);
+
+        while (_audioSource.isPlaying)
+        {
+            yield return null;
+        }
+
+        PlayClip(longClip, true);
     }
 }
