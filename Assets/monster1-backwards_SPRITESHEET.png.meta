@@ -1,12 +1,20 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 76c50d0414bee654ba3fe5fa11284814
+=======
+guid: 8807319c2f8432740acfbeb4d09ee552
+>>>>>>> 254b53f82786be90ee738943c187e9b1b4c39a14
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
     mipMapMode: 0
+<<<<<<< HEAD
     enableMipMap: 1
+=======
+    enableMipMap: 0
+>>>>>>> 254b53f82786be90ee738943c187e9b1b4c39a14
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -35,6 +43,7 @@ TextureImporter:
     filterMode: 1
     aniso: 2
     mipBias: 0
+<<<<<<< HEAD
     wrapU: 0
     wrapV: 0
     wrapW: 0
@@ -42,6 +51,15 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 0
+=======
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+>>>>>>> 254b53f82786be90ee738943c187e9b1b4c39a14
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -50,9 +68,15 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
+<<<<<<< HEAD
   alphaIsTransparency: 0
   spriteTessellationDetail: -1
   textureType: 0
+=======
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+>>>>>>> 254b53f82786be90ee738943c187e9b1b4c39a14
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -65,7 +89,11 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
+<<<<<<< HEAD
     maxTextureSize: 8192
+=======
+    maxTextureSize: 16384
+>>>>>>> 254b53f82786be90ee738943c187e9b1b4c39a14
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -77,7 +105,11 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
+<<<<<<< HEAD
     maxTextureSize: 8192
+=======
+    maxTextureSize: 16384
+>>>>>>> 254b53f82786be90ee738943c187e9b1b4c39a14
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -101,7 +133,11 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
+<<<<<<< HEAD
     maxTextureSize: 8192
+=======
+    maxTextureSize: 16384
+>>>>>>> 254b53f82786be90ee738943c187e9b1b4c39a14
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -123,13 +159,32 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+<<<<<<< HEAD
+=======
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+>>>>>>> 254b53f82786be90ee738943c187e9b1b4c39a14
   spriteSheet:
     serializedVersion: 2
     sprites: []
     outline: []
     physicsShape: []
     bones: []
+<<<<<<< HEAD
     spriteID: 
+=======
+    spriteID: 5e97eb03825dee720800000000000000
+>>>>>>> 254b53f82786be90ee738943c187e9b1b4c39a14
     internalID: 0
     vertices: []
     indices: 

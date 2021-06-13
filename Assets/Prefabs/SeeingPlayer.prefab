@@ -167,6 +167,7 @@ MonoBehaviour:
   _playerBody: {fileID: 9105611515435814536}
   _camera: {fileID: 9105611515823080130}
   _yEnabled: 0
+  _xRestrictedAngle: 45
 --- !u!114 &9105611515435814539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,6 +198,15 @@ MonoBehaviour:
   - {fileID: 9105611515823080129}
   - {fileID: 9105611516013349839}
   _disableWhenActive: []
+  _hideyHoleLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  _hideyHoleDetectionDistance: 3
+  _levelExitLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  _levelExityDetectionDistance: 3
+  isSeeingPlayer: 1
 --- !u!114 &1094833293372003809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,7 +277,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.1
   far clip plane: 1000
   field of view: 60
   orthographic: 0
