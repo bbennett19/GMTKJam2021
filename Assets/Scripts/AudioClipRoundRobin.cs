@@ -11,12 +11,17 @@ public class AudioClipRoundRobin : MonoBehaviour
 
     private bool _playing;
     private int _clipIndex = 0;
+    private float _playRate = 0.25f;
+    private float _elapsed = 100f;
 
     // Update is called once per frame
     void Update()
     {
-        if (!_audioSource.isPlaying && _playing)
+        _elapsed += Time.deltaTime;
+
+        if (_playing && _elapsed >= _playRate)
         {
+            _elapsed = 0f;
             _audioSource.PlayOneShot(_clips[_clipIndex]);
             _clipIndex = (_clipIndex + 1) % _clips.Count;
         }
