@@ -79,7 +79,7 @@ public class EnemyController : MonoBehaviour
 
             if (_chasing)
             {
-                _navMeshAgent.destination = PlayerManager.Instance.GetCurrentPlayer().transform.position;
+                _navMeshAgent.destination = PlayerManager.Instance.GetClosestPlayer(transform.position).transform.position;
             }
             else if (!_navMeshAgent.pathPending && _navMeshAgent.remainingDistance < 0.3f)
             {
