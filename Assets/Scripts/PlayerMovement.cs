@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
         float y = _characterController.isGrounded ? 0f : gravity;
 
         Vector3 velocity = transform.right * x + transform.forward * z + transform.up * -y;
-        Debug.Log(velocity);
+        
         _characterController.Move(velocity * _moveVelocity * Time.deltaTime);
     }
 }

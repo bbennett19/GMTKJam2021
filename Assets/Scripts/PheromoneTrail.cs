@@ -17,7 +17,6 @@ public class PheromoneTrail : MonoBehaviour
 
     public void AddPheromone(Vector3 position)
     {
-        Debug.Log(position);
         Instantiate(_pheromonePrefab, position, Quaternion.identity, this.transform);
     }
 }
