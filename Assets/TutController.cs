@@ -16,6 +16,7 @@ public class TutController : MonoBehaviour
     {
         doneBtn.gameObject.SetActive(false);
         nextBtn.gameObject.SetActive(true);
+        main.gameObject.SetActive(false);
         gameObject.SetActive(true);
         index = 0;
         image.sprite = images[0];

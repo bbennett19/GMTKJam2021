@@ -403,7 +403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38cbd52a738d6ef4bbc78f4ae8620d54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mouseSensitivity: 300
+  _mouseSensitivity: 100
   _playerBody: {fileID: 9094898188771373276}
   _camera: {fileID: 9094898189090880662}
   _yEnabled: 0
