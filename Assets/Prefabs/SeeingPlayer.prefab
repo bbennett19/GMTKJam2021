@@ -230,7 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pheromoneTrail: {fileID: 0}
-  _distanceBetweenPhermonones: 5
+  _distanceBetweenPhermonones: 3.5
 --- !u!82 &7388993984378632118
 AudioSource:
   m_ObjectHideFlags: 0
