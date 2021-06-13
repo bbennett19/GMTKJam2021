@@ -16,6 +16,14 @@ public class PlayerController : MonoBehaviour
     private LayerMask _levelExitLayerMask;
     [SerializeField]
     private float _levelExityDetectionDistance;
+    [SerializeField]
+    private AudioSource _audioSource;
+    [SerializeField]
+    private AudioClip _hidingClip;
+    [SerializeField]
+    private AudioClip _exitHidingClip;
+    [SerializeField]
+    private AudioClip _setActiveClip;
 
     public bool isSeeingPlayer;
     
@@ -50,6 +58,11 @@ public class PlayerController : MonoBehaviour
         _mouseLook.enabled = active;
         _playerMovement.enabled = active;
         _playerActive = active;
+
+        if (active)
+        {
+            _audioSource.PlayOneShot(_setActiveClip);
+        }
     }
 
     private void LateUpdate()
@@ -76,7 +89,7 @@ public class PlayerController : MonoBehaviour
             _hideyHoleTransform = hit.transform.gameObject.GetComponent<HideyHole>().GetHidingTransform();
             transform.position = _hideyHoleTransform.position;
             transform.rotation = _hideyHoleTransform.rotation;
-            // _mouseLook.SetXRestricted(true);
+            _audioSource.PlayOneShot(_hidingClip);
         }
         else if (_hiding && Input.GetKeyDown(KeyCode.E))
         {
@@ -84,7 +97,7 @@ public class PlayerController : MonoBehaviour
             _hiding = false;
             transform.position = transform.position + (_hideyHoleTransform.forward * 3f);
             _characterController.enabled = true;
-            //_mouseLook.SetXRestricted(false);
+            _audioSource.PlayOneShot(_exitHidingClip);
         }
 
         // very inefficient, should only do these when the hiding/canhide state changes
@@ -112,6 +125,7 @@ public class PlayerController : MonoBehaviour
         if (canExit && LevelExitManager.Instance.CanPlayerExit(isSeeingPlayer) &&  Input.GetKeyDown(KeyCode.E))
         {
             Debug.Log("Exit");
+            _audioSource.PlayOneShot(_exitHidingClip);
             LevelExitManager.Instance.PlayerExited();
         }
         else if (canExit && LevelExitManager.Instance.CanPlayerExit(isSeeingPlayer))

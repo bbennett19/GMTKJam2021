@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     private float _moveVelocity;
     [SerializeField]
     private CharacterController _characterController;
+    [SerializeField]
+    private AudioClipRoundRobin _clipPlayer;
 
     private float gravity = 100f;
 
@@ -22,5 +24,12 @@ public class PlayerMovement : MonoBehaviour
         Vector3 velocity = transform.right * x + transform.forward * z + transform.up * -y;
         
         _characterController.Move(velocity * _moveVelocity * Time.deltaTime);
+
+        _clipPlayer.SetPlaying(new Vector2(velocity.x, velocity.z).magnitude > 0f);
+    }
+
+    private void OnDisable()
+    {
+        _clipPlayer.SetPlaying(false);
     }
 }
