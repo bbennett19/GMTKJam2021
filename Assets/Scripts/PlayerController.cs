@@ -24,9 +24,9 @@ public class PlayerController : MonoBehaviour
     private CharacterController _characterController;
 
     private bool _playerActive;
-    private bool _hiding = false;
+    public bool _hiding = false;
+    private bool _dead = false;
     private Transform _hideyHoleTransform;
-    private int frame = 0;
 
     public void Awake()
     {
@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (_playerActive)
+        if (_playerActive && !_dead)
         {
             if (!CheckHideyHole() && !CheckLevelExit())
             {
@@ -122,5 +122,13 @@ public class PlayerController : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void SetDead()
+    {
+        _dead = true;
+        _characterController.enabled = false;
+        _mouseLook.enabled = false;
+        ButtonPromptOverlayController.Instance.HidePromt();
     }
 }

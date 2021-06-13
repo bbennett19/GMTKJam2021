@@ -49,6 +49,18 @@ public class PlayerManager : MonoBehaviour
         return (_seeingActive ? _seeingPlayer : _blindPlayer).gameObject;
     }
 
+    public GameObject GetClosestPlayer(Vector3 position)
+    {
+        float distSeeing = (position - _seeingPlayer.gameObject.transform.position).sqrMagnitude;
+
+        if ((position - _blindPlayer.gameObject.transform.position).sqrMagnitude < distSeeing && !_blindPlayer._hiding)
+        {
+            return _blindPlayer.gameObject;
+        }
+
+        return _seeingPlayer._hiding ? null : _seeingPlayer.gameObject;
+    }
+
     public void SwapPlayers()
     {
         if (!_swapDisabled)
@@ -61,11 +73,14 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public void DisableSwap()
+    public void DisableSwap(bool dead = false)
     {
         _swapDisabled = true;
-        // disabling the swap means the blind player made it out
-        _blindPlayer.gameObject.SetActive(false);
+        if (!dead)
+        {
+            // disabling the swap means the blind player made it out
+            _blindPlayer.gameObject.SetActive(false);
+        }
     }
 
     public void Update()

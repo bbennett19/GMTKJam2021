@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38cbd52a738d6ef4bbc78f4ae8620d54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mouseSensitivity: 400
+  _mouseSensitivity: 300
   _playerBody: {fileID: 9105611515435814536}
   _camera: {fileID: 9105611515823080130}
   _yEnabled: 0
@@ -304,6 +304,7 @@ MonoBehaviour:
     m_Bits: 128
   _levelExityDetectionDistance: 3
   isSeeingPlayer: 1
+  _hiding: 0
 --- !u!114 &1094833293372003809
 MonoBehaviour:
   m_ObjectHideFlags: 0

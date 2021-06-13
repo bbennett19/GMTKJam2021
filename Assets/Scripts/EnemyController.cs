@@ -14,10 +14,13 @@ public class EnemyController : MonoBehaviour
     private float _chaseSpeed;
     [SerializeField]
     private float _chaseRadius;
+    [SerializeField]
+    private float _attackDistance;
 
     private NavMeshAgent _navMeshAgent;
     private int _nextWaypoint = 0;
     private bool _chasing = false;
+    private bool _done = false;
 
     // Start is called before the first frame update
     void Start()
@@ -30,44 +33,75 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!_chasing && PlayerInChaseRadius() && PlayerInLineOfSight())
+        if (!_done)
         {
-            Debug.Log("Start chasing");
-            _navMeshAgent.speed = _chaseSpeed;
-            _chasing = true;
-        } else if (_chasing && !PlayerInChaseRadius())
-        {
-            Debug.Log("Stop chasing");
-            _navMeshAgent.speed = _patrolSpeed;
-            _chasing = false;
-            GotoClosestWaypoint();
-        }
+            if (!_chasing && PlayerInChaseRadius() && PlayerInLineOfSight())
+            {
+                Debug.Log("Start chasing");
+                _navMeshAgent.speed = _chaseSpeed;
+                _chasing = true;
+            }
+            else if (_chasing && !PlayerInChaseRadius())
+            {
+                Debug.Log("Stop chasing");
+                _navMeshAgent.speed = _patrolSpeed;
+                _chasing = false;
+                GotoClosestWaypoint();
+            }
+            else if (_chasing && PlayerInAttackRadius())
+            {
+                Debug.Log("Attack");
+                PlayerController player = PlayerManager.Instance.GetClosestPlayer(transform.position).GetComponent<PlayerController>();
+                player.SetDead();
+                PlayerManager.Instance.DisableSwap(true);
+                GameOverCanvas.Instance.TriggerGameOver(player);
+                _navMeshAgent.isStopped = true;
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                _done = true;
+            }
 
-        if (_chasing)
-        {
-            _navMeshAgent.destination = PlayerManager.Instance.GetCurrentPlayer().transform.position;
-        }
-        else if (!_navMeshAgent.pathPending && _navMeshAgent.remainingDistance < 0.3f)
-        {
-            GotoNextWaypoint();
+
+            if (_chasing)
+            {
+                _navMeshAgent.destination = PlayerManager.Instance.GetCurrentPlayer().transform.position;
+            }
+            else if (!_navMeshAgent.pathPending && _navMeshAgent.remainingDistance < 0.3f)
+            {
+                GotoNextWaypoint();
+            }
         }
     }
 
     private bool PlayerInChaseRadius()
     {
-        return (transform.position - PlayerManager.Instance.GetCurrentPlayer().transform.position).magnitude < _chaseRadius;
+        GameObject player = PlayerManager.Instance.GetClosestPlayer(transform.position);
+
+        return player != null && (transform.position - player.transform.position).magnitude < _chaseRadius;
+    }
+
+    private bool PlayerInAttackRadius()
+    {
+        GameObject player = PlayerManager.Instance.GetClosestPlayer(transform.position);
+
+        return player != null && (transform.position - player.transform.position).magnitude < _attackDistance;
     }
 
     private bool PlayerInLineOfSight()
     {
-        Vector3 raycastDirection = PlayerManager.Instance.GetCurrentPlayer().transform.position - transform.position;
-        RaycastHit hit;
-        
-        if (Physics.Raycast(transform.position, raycastDirection, out hit))
+        GameObject player = PlayerManager.Instance.GetClosestPlayer(transform.position);
+
+        if (player)
         {
-            if (hit.transform.gameObject.CompareTag("Player"))
+            Vector3 raycastDirection = player.transform.position - transform.position;
+            RaycastHit hit;
+
+            if (Physics.Raycast(transform.position, raycastDirection, out hit) && Vector3.Dot(transform.forward, raycastDirection.normalized) > 0)
             {
-                return true;
+                if (hit.transform.gameObject.CompareTag("Player"))
+                {
+                    return true;
+                }
             }
         }
 

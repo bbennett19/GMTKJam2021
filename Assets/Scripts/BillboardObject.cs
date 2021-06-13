@@ -29,7 +29,6 @@ public class BillboardObject : MonoBehaviour
             Vector3 direction = (_cameraTransform.position - _parentTransform.position).normalized;
             float value = Vector3.Dot(direction, _parentTransform.forward);
 
-            Debug.Log(value);
             if (value > 0)
             {
                 _back.SetActive(false);

@@ -30,8 +30,6 @@ public class MaterialOffsetAnimator : MonoBehaviour
         {
             _time = 0f;
             _frameIndex = (_frameIndex + 1) % (_numberOfFrames+1);
-            Debug.Log("FrameIndex: " + _frameIndex);
-            Debug.Log((float) _frameIndex / _numberOfFrames);
             _renderer.material.SetTextureOffset("_BaseMap", new Vector2((float)_frameIndex / _numberOfFrames, 0f));
         }
     }
