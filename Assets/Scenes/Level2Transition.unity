@@ -180,10 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "The year is 3020. The world as we know it, has been completely overrun
-    by wasps and\u2026. mutated vegetables. The garden... is no longer safe, and
-    we must find a new home. My brother and I have been searching for days. We\u2019re
-    scared to go outside, but we have to find a way out of here."
+  m_text: "That was close. I think we\u2019re almost there"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8cc8fe6b93db6e0458d4f02c2d708aea, type: 2}
   m_sharedMaterial: {fileID: 2555374412487580704, guid: 8cc8fe6b93db6e0458d4f02c2d708aea, type: 2}
