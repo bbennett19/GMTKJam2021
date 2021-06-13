@@ -15,6 +15,8 @@ public class GameOverCanvas : MonoBehaviour
     private Button _button;
     [SerializeField]
     private float _fadeTime;
+    [SerializeField]
+    private string _nextScene;
 
     private Color _white = new Color(1f, 1f, 1f, 0f);
     private Color _black = new Color(0f, 0f, 0f, 0f);
@@ -30,10 +32,15 @@ public class GameOverCanvas : MonoBehaviour
 
     public void TriggerGameOver(PlayerController playerController)
     {
-        StartCoroutine(GameOver(playerController));
+        StartCoroutine(GameOver(playerController, false));
     }
 
-    IEnumerator GameOver(PlayerController playerController)
+    public void TriggerLevelWin()
+    {
+        StartCoroutine(GameOver(PlayerManager.Instance.GetCurrentPlayer().GetComponent<PlayerController>(), true));
+    }
+
+    IEnumerator GameOver(PlayerController playerController, bool win)
     {
         bool currentPlayerSeeing = PlayerManager.Instance.GetCurrentPlayer().GetComponent<PlayerController>().isSeeingPlayer;
 
@@ -57,10 +64,17 @@ public class GameOverCanvas : MonoBehaviour
 
         yield return null;
 
-        // display text and button
-        _text.color = currentPlayerSeeing ? Color.white : Color.black;
-        _text.gameObject.SetActive(true);
-        _button.gameObject.SetActive(true);
+        if (win)
+        {
+            SceneManager.LoadScene(_nextScene);
+        }
+        else
+        {
+            // display text and button
+            _text.color = currentPlayerSeeing ? Color.white : Color.black;
+            _text.gameObject.SetActive(true);
+            _button.gameObject.SetActive(true);
+        }
     }
 
     public void ReloadScene()

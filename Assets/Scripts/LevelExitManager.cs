@@ -38,7 +38,7 @@ public class LevelExitManager : MonoBehaviour
         if (_visibleDoorRevealed)
         {
             // Both players exited reload the scene
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            GameOverCanvas.Instance.TriggerLevelWin();
         }
 
         _visibleDoorRevealed = true;

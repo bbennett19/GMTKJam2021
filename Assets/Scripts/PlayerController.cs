@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
     private AudioClip _exitHidingClip;
     [SerializeField]
     private AudioClip _setActiveClip;
+    [SerializeField]
+    private PheromoneTrail _pheromoneTrail;
 
     public bool isSeeingPlayer;
     
@@ -90,6 +92,8 @@ public class PlayerController : MonoBehaviour
             transform.position = _hideyHoleTransform.position;
             transform.rotation = _hideyHoleTransform.rotation;
             _audioSource.PlayOneShot(_hidingClip);
+            if (_pheromoneTrail != null)
+                _pheromoneTrail.AddPheromone(_hideyHoleTransform.position + (_hideyHoleTransform.forward * 1.5f), true);
         }
         else if (_hiding && Input.GetKeyDown(KeyCode.E))
         {

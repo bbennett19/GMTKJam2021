@@ -2479,7 +2479,7 @@ MonoBehaviour:
   _text: {fileID: 648531052}
   _button: {fileID: 853972568}
   _fadeTime: 1.5
-  _nextScene: MainMenu
+  _nextScene: Level3Transition
 --- !u!114 &1080910401
 MonoBehaviour:
   m_ObjectHideFlags: 0

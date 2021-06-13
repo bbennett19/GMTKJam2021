@@ -6,6 +6,8 @@ public class PheromoneTrail : MonoBehaviour
 {
     [SerializeField]
     private GameObject _pheromonePrefab;
+    [SerializeField]
+    private GameObject _hideyPheromone;
 
     public void SetTrailActive(bool active)
     {
@@ -15,8 +17,15 @@ public class PheromoneTrail : MonoBehaviour
         }
     }
 
-    public void AddPheromone(Vector3 position)
+    public void AddPheromone(Vector3 position, bool isForHidey = false)
     {
-        Instantiate(_pheromonePrefab, position, Quaternion.identity, this.transform);
+        if (!isForHidey)
+        {
+            Instantiate(_pheromonePrefab, position, Quaternion.identity, this.transform);
+        }
+        else
+        {
+            Instantiate(_hideyPheromone, position, Quaternion.identity, this.transform);
+        }
     }
 }

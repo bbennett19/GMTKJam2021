@@ -44,3 +44,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pheromonePrefab: {fileID: 8250655808725396734, guid: 55d6c5e299039a64db1b20e93f8b9ebb, type: 3}
+  _hideyPheromone: {fileID: 4025392851155849062, guid: 17d9f1c1721fb374d9881f266149fc6d, type: 3}
